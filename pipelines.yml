@@ -3,7 +3,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: PradnyaGithub               # Change to your integration
-      path: pradsjfrog/pipelines_helloworld                 # Change to your repo
+      path: pradnyashinde/pipelines_helloworld                 # Change to your repo
       branches: 
         include: ^master$
       
@@ -20,11 +20,8 @@ pipelines:
         configuration:
           inputResources:
             - name: myAppRepo
-          integrations:
-            - name: ArtifactoryIntegration
         execution:
           onExecute:
-            - jfrog rt docker-pull 34.80.90.69:8082/docker-remote/mariadb:10.2.23 docker-remote
             - echo $MY_MESSAGE
             - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
             - add_run_variables current_runid=$run_id
